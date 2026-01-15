@@ -1,0 +1,80 @@
+# FlowAI 配置文件模板
+# 复制为 flowai.config.yaml 并填入您的实际值
+# 文档: docs/001_一键迁移方案.md
+
+version: "1.0"
+
+# ========== 必须配置 ==========
+paths:
+  # 文章发布目录 (支持 {year} 占位符自动替换为当前年份)
+  # 示例: /Users/yourname/projects/my-blog/{year}/
+  publish_dir: "${PUBLISH_DIR}"
+
+  # 评审文档输出目录 (相对于项目根目录)
+  cr_output_dir: "docs/cr_local/"
+
+  # 草稿目录优先级 (相对于项目根目录)
+  # 系统会按顺序检测, 使用第一个存在的目录
+  draft_dirs:
+    - "docs/post_local/"    # 本地草稿, 不提交
+    - "docs/post/"          # 公开草稿
+    - "post/"               # 备用
+
+github:
+  # GitHub 组织/用户名
+  org: "${GITHUB_ORG}"
+
+  # GitHub 仓库名
+  repo: "${GITHUB_REPO}"
+
+  # GitHub Projects 看板 ID
+  project_id: 1
+
+# ========== 可选配置 ==========
+defaults:
+  # Claude 模型选择: haiku (快速) | sonnet (平衡) | opus (最强)
+  model: "sonnet"
+
+  # 文章风格: tutorial (教程) | guide (指南) | reference (参考)
+  article_style: "tutorial"
+
+  # 技术难度: beginner | intermediate | advanced
+  article_level: "intermediate"
+
+  # 文章长度: short (800-1500字) | medium (1500-3000字) | long (3000-5000字)
+  article_length: "medium"
+
+  # 是否生成配套文档
+  generate_companion: false
+
+  # UI/UX 默认技术栈
+  ui_stack: "html-tailwind"
+
+# Git Worktree 配置 (code_git-wt)
+git_worktree:
+  # Worktree 路径模式
+  # {project}: 项目名, {branch}: 分支名
+  path_pattern: "../{project}-{branch}"
+
+  # 新分支前缀
+  branch_prefix: "dev/"
+
+  # 自动共享的文件 (会从主工作区复制)
+  shared_files:
+    - ".env"
+    - ".env.local"
+
+  # 自动创建缺失的共享文件
+  auto_create_shared: false
+
+# 敏感文件拦截规则 (code_ci 使用)
+# 匹配这些模式的文件将被阻止提交
+sensitive_patterns:
+  - ".env"
+  - ".env.*"
+  - "*.key"
+  - "*.pem"
+  - "*secret*"
+  - "*password*"
+  - "*token*"
+  - "credentials*"
