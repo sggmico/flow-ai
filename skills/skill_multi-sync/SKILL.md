@@ -1,0 +1,22 @@
+---
+name: skill_multi-sync
+description: 同步当前仓库的 skills 目录到 ~/.claude/skills、~/.codex/skills、~/.gemini/skills 以保持能力与文件一致。用于需要批量同步/更新本仓库技能到默认目录、避免手动复制或遗漏更新时使用。
+---
+
+# Skill Multi Sync
+
+## 快速使用
+
+- 在仓库根目录执行：`skills/skill_multi-sync/scripts/sync_skills.sh`
+- 只做预览：`SYNC_DRY_RUN=1 skills/skill_multi-sync/scripts/sync_skills.sh`
+
+## 约定
+
+- 默认同步当前目录下的 `skills/` 到三个目标目录
+- 会覆盖目标目录中同名文件并删除多余文件
+- 目标目录不存在时自动创建
+- 不会删除或变动目标目录中的隐藏文件（例如以 `.` 开头的文件）
+
+## 排查
+
+- 如果没有 `rsync`，先安装，或临时用 `cp -a skills/. ~/.claude/skills/` 方式手动同步
