@@ -59,7 +59,10 @@ description: 技术文章生成、发布与管理的完整工作流。用于用�
 
 ```
 IF 生成模式:
-    fs_detect → 获取草稿目录
+    IF user provided target output directory:
+        use target directory for fs_write → skip draft detection
+    ELSE:
+        fs_detect → 获取草稿目录
     fs_next-id → 获取文章 ID
 
 IF --publish:
@@ -99,7 +102,7 @@ IF --companion:
 
 ```
 fs_write(
-    draft_dir = fs_detect 结果,
+    dir = target_output_dir OR fs_detect 结果,
     article_id = fs_next-id 结果,
     title = post_write 输出的 title,
     content = post_write 输出的 content,
@@ -124,7 +127,7 @@ fs_write(
 
 ## 目录配置
 
-**草稿目录** (优先级):
+**草稿目录** (仅在用户未指定目标目录时按以下优先级使用):
 1. `docs/post_local/`
 2. `docs/post/`
 3. `post/` (当前目录)
@@ -132,6 +135,8 @@ fs_write(
 
 **发布目录**:
 `/Users/sggmico/ws/cc/build-blog/{year}/`
+
+> ⚠️ 如果用户明确指定输出目录（例如 `/Users/.../post/...`），应直接写入该目录，避免在默认草稿目录中生成额外副本。
 
 ---
 
@@ -147,6 +152,8 @@ fs_write(
 - **草稿**: `{草稿目录}/{ID}_{title}.md`
 - **配套**: `{草稿目录}/{ID}_{title}_扩展信息.md` (--companion)
 - **发布**: `/Users/sggmico/ws/cc/build-blog/{year}/{ID}_{title}.md`
+
+> ⚠️ 若用户声明具体输出路径，则覆盖以上草稿目录定义，最终文件直接落在该目标目录而不再额外生成其它副本。
 
 ---
 

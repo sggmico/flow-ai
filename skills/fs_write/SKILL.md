@@ -34,6 +34,7 @@ python scripts/write_draft.py \
 
 - 文件名格式：`{ID}_{sanitized_title}.md`。
 - 如果有配套内容，生成 `{ID}_{sanitized_title}_扩展信息.md`。
+- 可直接把 `--dir` 指定为用户目标目录（如 `/Users/.../post/...`），避免在默认草稿目录再复制一份。
 
 ## 要求
 
