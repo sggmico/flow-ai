@@ -7,6 +7,41 @@ import argparse
 import re
 from datetime import datetime, timezone
 
+PUBLISHED_PATTERN = re.compile(r"^(\d{3})_.*\.md$")
+
+def get_next_publish_id(publish_dir):
+    """
+    根据发布目录内已有文件的最大序号计算下一个发布 ID。
+    """
+    if not os.path.isdir(publish_dir):
+        return "001"
+
+    max_id = 0
+    for filename in os.listdir(publish_dir):
+        match = PUBLISHED_PATTERN.match(filename)
+        if match:
+            current_id = int(match.group(1))
+            if current_id > max_id:
+                max_id = current_id
+
+    return f"{max_id + 1:03d}"
+
+def load_map(map_file):
+    map_data = {"mappings": []}
+    if os.path.exists(map_file):
+        with open(map_file, "r", encoding="utf-8") as f:
+            try:
+                map_data = json.load(f)
+            except json.JSONDecodeError:
+                pass
+    return map_data
+
+def find_existing_mapping(map_data, draft_file):
+    for mapping in map_data.get("mappings", []):
+        if mapping.get("draft") == draft_file:
+            return mapping
+    return None
+
 def publish_draft(draft_file, publish_dir, publish_id, map_file):
     """
     发布一篇草稿文章。
@@ -27,6 +62,32 @@ def publish_draft(draft_file, publish_dir, publish_id, map_file):
         sys.exit(1)
     title_part = title_part_match.group(1)
 
+    # 读取映射，防止重复发布同一草稿
+    map_data = load_map(map_file)
+    existing_mapping = find_existing_mapping(map_data, draft_file)
+    if existing_mapping:
+        print(
+            f"错误: 草稿已发布过，发布文件为 '{existing_mapping.get('published')}'",
+            file=sys.stderr,
+        )
+        sys.exit(1)
+
+    # 计算发布 ID（若未提供）
+    publish_id = (publish_id or "").strip()
+    if not publish_id:
+        publish_id = get_next_publish_id(publish_dir)
+
+    # 若目标发布文件已存在，则阻止覆盖
+    if os.path.isdir(publish_dir):
+        for filename in os.listdir(publish_dir):
+            match = PUBLISHED_PATTERN.match(filename)
+            if match and match.group(1) == publish_id:
+                print(
+                    f"错误: 发布 ID '{publish_id}' 已存在，请使用其他 ID。",
+                    file=sys.stderr,
+                )
+                sys.exit(1)
+
     # 构建新的发布文件名和路径
     published_filename = f"{publish_id}_{title_part}.md"
     published_filepath = os.path.join(publish_dir, published_filename)
@@ -40,15 +101,6 @@ def publish_draft(draft_file, publish_dir, publish_id, map_file):
         sys.exit(1)
 
     # 2. 更新映射文件
-    map_data = {"mappings": []}
-    if os.path.exists(map_file):
-        with open(map_file, "r", encoding="utf-8") as f:
-            try:
-                map_data = json.load(f)
-            except json.JSONDecodeError:
-                # 如果文件损坏或为空，则重新开始
-                pass
-    
     # 创建新的映射条目
     now_utc = datetime.now(timezone.utc).isoformat()
     new_mapping = {
@@ -58,9 +110,6 @@ def publish_draft(draft_file, publish_dir, publish_id, map_file):
         "updated_at": now_utc
     }
     
-    # 检查此草稿的映射是否已存在以防止重复
-    # 当前实现总是添加新条目，并假设编排器会防止重复发布。
-    # 更健壮的实现会选择更新现有条目。
     map_data["mappings"].append(new_mapping)
     
     try:
@@ -78,7 +127,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="发布一篇草稿文章并更新发布映射。")
     parser.add_argument("--draft-file", required=True, help="源草稿文件的完整路径。")
     parser.add_argument("--publish-dir", required=True, help="发布的目标目录。")
-    parser.add_argument("--publish-id", required=True, help="用于发布文件的新三位数 ID。")
+    parser.add_argument(
+        "--publish-id",
+        default="",
+        help="用于发布文件的新三位数 ID。留空则自动使用发布目录内的下一个序号。",
+    )
     parser.add_argument("--map-file", required=True, help="'.publish-map.json' 文件的路径。")
     
     args = parser.parse_args()
