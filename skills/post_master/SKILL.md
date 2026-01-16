@@ -25,20 +25,20 @@ description: 技术文章生成、发布与管理的完整工作流。用于用�
 
 ## 参数
 
-| 参数 | 默认值 | 说明 |
-|------|--------|------|
-| `--year` | 当前年 | 发布年份 |
-| `--style` | - | tutorial/guide/reference |
-| `--level` | - | beginner/intermediate/advanced |
-| `--model` | sonnet | haiku/sonnet/opus |
-| `--length` | medium | short/medium/long |
-| `--companion` | false | 生成配套文档 |
-| `--no-preprocess` | false | 跳过预处理 |
-| `--publish` | - | 发布草稿 |
-| `--update` | - | 更新已发布 |
-| `--status` | - | 查看状态 |
-| `--list-drafts` | - | 列出草稿 |
-| `--list-published` | - | 列出已发布 |
+| 参数                 | 默认值    | 说明                             |
+| ------------------ | ------ | ------------------------------ |
+| `--year`           | 当前年    | 发布年份                           |
+| `--style`          | -      | tutorial/guide/reference       |
+| `--level`          | -      | beginner/intermediate/advanced |
+| `--model`          | sonnet | haiku/sonnet/opus              |
+| `--length`         | medium | short/medium/long              |
+| `--companion`      | false  | 生成配套文档                         |
+| `--no-preprocess`  | false  | 跳过预处理                          |
+| `--publish`        | -      | 发布草稿                           |
+| `--update`         | -      | 更新已发布                          |
+| `--status`         | -      | 查看状态                           |
+| `--list-drafts`    | -      | 列出草稿                           |
+| `--list-published` | -      | 列出已发布                          |
 
 ---
 
@@ -104,6 +104,19 @@ fs_write(
     companion_content = post_extra 输出 (可选)
 )
 ```
+
+---
+
+## 风格稳定（低成本）
+
+动作:
+- 风格-锚点-应用
+- 结构-模板-一致
+
+规则:
+- 仅在 post_write 阶段约束输出结构
+- 读取 `../post_write/references/style-profile.md` 获取锚点与固定结构
+- 不改动原有能力与流程
 
 ---
 
@@ -175,6 +188,6 @@ fs_write(
 
 ---
 
-**版本**: v3.0
-**日期**: 2026-01-12
-**说明**: 整合 cc-post 命令层与 post-content-writer agent 层
+**版本**: v3.1
+**日期**: 2026-01-15
+**说明**: 增加风格锚点引用，保持输出稳定
