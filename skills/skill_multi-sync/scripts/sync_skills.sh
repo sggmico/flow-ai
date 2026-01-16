@@ -4,7 +4,16 @@ set -euo pipefail
 ROOT_DIR="${1:-$(pwd)}"
 SRC_DIR="$ROOT_DIR/skills"
 
-TARGET_DIRS=("$HOME/.claude/skills" "$HOME/.codex/skills" "$HOME/.gemini/skills")
+TARGET_DIRS=(
+  "$HOME/.claude/skills"
+  "$HOME/.codex/skills"
+  "$HOME/.gemini/skills"
+  "/Users/sggmico/ws/cc/learn-flow/.gemini/skills"
+  "/Users/sggmico/ws/cc/agent-flow-ws/.gemini/skills"
+)
+if [[ -n "${SYNC_TARGETS:-}" ]]; then
+  IFS=',:' read -r -a TARGET_DIRS <<< "$SYNC_TARGETS"
+fi
 
 if [[ ! -d "$SRC_DIR" ]]; then
   echo "source skills dir not found: $SRC_DIR" >&2
