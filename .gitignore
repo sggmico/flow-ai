@@ -1,34 +1,50 @@
+# macOS
 .DS_Store
 .AppleDouble
 .LSOverride
+.Spotlight-V100
+.Trashes
 
+# Editor
 *.swp
 *.swo
 *~
+.idea/
+.vscode/
+.obsidian/
 
+# Python
 __pycache__/
 *.py[cod]
 *.pyd
 *.pyo
+*.py,cover
 
+# Python tooling
 .pytest_cache/
 .mypy_cache/
 .ruff_cache/
 .tox/
 .coverage
 .coverage.*
+htmlcov/
 
+# Env
 .env
 .env.*
+.envrc
 .venv/
 venv/
 env/
 
+# Build
 build/
 dist/
 *.egg-info/
+pip-wheel-metadata/
 
-.idea/
-.vscode/
+# Logs
+*.log
 
+# Misc
 *local*
