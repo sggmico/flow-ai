@@ -88,6 +88,8 @@ mode=1:
 mode=2:
     post_analyze(REFERENCE_ARTICLES) → analysis_report
     post_write(analysis_report, mode=2, length, style, level) → {title, content}
+    IF --refs 是目录:
+        post_analyze 按目录级输入处理(见 post_analyze/references/dir-ingest.md)
 
 IF --companion:
     post_extra(content, processed_context) → companion_content
