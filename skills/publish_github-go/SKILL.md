@@ -1,5 +1,5 @@
 ---
-name: publish_local-blog
+name: publish_github-go
 description: 发布草稿到目标目录并更新映射，确保发布文件名优先来自文章内一级标题，缺失时才用原文件名。
 ---
 

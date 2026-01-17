@@ -66,7 +66,7 @@ IF 生成模式:
     fs_next-id → 获取文章 ID
 
 IF --publish:
-    publish_local-blog → 发布到正式目录
+    publish_github-go → 发布到正式目录
 
 IF --update:
     fs_update → 更新已发布文章
@@ -143,7 +143,7 @@ fs_write(
 ## Skills 依赖
 
 **内容类**: post_prep, post_analyze, post_write, post_extra
-**文件类**: fs_detect, fs_next-id, fs_write, publish_local-blog, fs_update
+**文件类**: fs_detect, fs_next-id, fs_write, publish_github-go, fs_update
 
 ---
 
