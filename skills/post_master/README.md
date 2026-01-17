@@ -397,7 +397,7 @@ A: 使用 `--update` 参数更新已发布文章。
 A: 不可以，必须和主文章一起生成。
 
 **Q: 支持其他发布目录吗？**
-A: 当前固定为 `/Users/sggmico/ws/cc/build-blog/`，如需修改需编辑 `fs_publish` skill。
+A: 当前固定为 `/Users/sggmico/ws/cc/build-blog/`，如需修改需编辑 `publish_local-blog` skill。
 
 ---
 
@@ -441,4 +441,4 @@ A: 当前固定为 `/Users/sggmico/ws/cc/build-blog/`，如需修改需编辑 `f
 **相关文档**:
 - `post_write/SKILL.md` - 写作质量标准
 - `fs_detect/SKILL.md` - 目录检测
-- `fs_publish/SKILL.md` - 发布流程
+- `publish_local-blog/SKILL.md` - 发布流程
