@@ -47,7 +47,6 @@ pip-wheel-metadata/
 *.log
 
 # Misc
-# 保留含 local 的技能目录
+.gemini/
+
 *local*
-!skills/publish_local-blog/
-!skills/publish_local-blog/**
