@@ -1,6 +1,6 @@
 ---
 name: skill_multi-sync
-description: 同步当前仓库的 skills 目录到 ~/.claude/skills、~/.codex/skills、~/.gemini/skills 以保持能力与文件一致。用于需要批量同步/更新本仓库技能到默认目录、避免手动复制或遗漏更新时使用。
+description: 同步当前仓库的 skills 目录到 ~/.claude/skills、~/.codex/skills、~/.gemini/skills、/Users/sggmico/course/.gemini/skills 以保持能力与文件一致。用于需要批量同步/更新本仓库技能到默认目录、避免手动复制或遗漏更新时使用。
 ---
 
 # Skill Multi Sync
@@ -13,7 +13,7 @@ description: 同步当前仓库的 skills 目录到 ~/.claude/skills、~/.codex/
 
 ## 约定
 
-- 默认同步当前目录下的 `skills/` 到五个目标目录
+- 默认同步当前目录下的 `skills/` 到六个目标目录
 - 可通过 `SYNC_TARGETS` 覆盖默认目标目录列表
 - 会覆盖目标目录中同名文件并删除多余文件
 - 目标目录不存在时自动创建

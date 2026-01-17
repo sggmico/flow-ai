@@ -10,6 +10,7 @@ TARGET_DIRS=(
   "$HOME/.gemini/skills"
   "/Users/sggmico/ws/cc/learn-flow/.gemini/skills"
   "/Users/sggmico/ws/cc/agent-flow-ws/.gemini/skills"
+  "/Users/sggmico/course/.gemini/skills"
 )
 if [[ -n "${SYNC_TARGETS:-}" ]]; then
   IFS=',:' read -r -a TARGET_DIRS <<< "$SYNC_TARGETS"
