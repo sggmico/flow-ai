@@ -52,7 +52,7 @@ flow-ai/
 - `fs_detect` - 草稿目录检测/创建
 - `fs_next-id` - 获取下一个文章 ID
 - `fs_write` - 写入草稿与配套文件
-- `fs_publish` - 发布草稿到目标目录
+- `publish_local-blog` - 发布草稿到目标目录并更新映射
 - `fs_update` - 更新已发布文章
 
 ### 脚本执行
