@@ -46,7 +46,7 @@ flow-ai/
 - `post_prep` - 内容摘要提取
 - `post_analyze` - 多篇文章分析综合
 - `post_extra` - 配套文档生成
-- `post_publish-wx` - 微信发布素材
+- `publish_wx-assets` - 微信发布素材
 
 **文件技能** (`fs_*`):
 - `fs_detect` - 草稿目录检测/创建
