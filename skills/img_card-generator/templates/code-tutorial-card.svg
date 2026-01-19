@@ -1,0 +1,209 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1440" width="1080" height="1440">
+  <!--
+    CODE TUTORIAL CARD TEMPLATE
+    Platform: Xiaohongshu (1080×1440)
+    Style: Tech Dark with Orange accent
+
+    CUSTOMIZATION GUIDE:
+    1. Replace {CARD_NUMBER} with card number
+    2. Replace {TAG_TEXT} with tag label
+    3. Replace {FILENAME} with code filename
+    4. Replace code content in the code block section
+    5. Modify highlighted line as needed
+    6. Replace {EXPLANATION} with plain-language explanation
+    7. Replace {TIP_TEXT} with helpful tip
+    8. Replace {YOUR_ID} with your social ID
+  -->
+
+  <defs>
+    <!-- Background gradient -->
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0f23"/>
+      <stop offset="50%" style="stop-color:#1a1a3e"/>
+      <stop offset="100%" style="stop-color:#0d1b2a"/>
+    </linearGradient>
+
+    <!-- Tag gradient - Orange -->
+    <linearGradient id="tagGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f97316"/>
+      <stop offset="100%" style="stop-color:#fb923c"/>
+    </linearGradient>
+
+    <!-- Explanation box - Blue -->
+    <linearGradient id="blueGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#3b82f6"/>
+      <stop offset="100%" style="stop-color:#60a5fa"/>
+    </linearGradient>
+
+    <!-- Code block background -->
+    <linearGradient id="codeBg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1e3f"/>
+      <stop offset="100%" style="stop-color:#2d2b55"/>
+    </linearGradient>
+
+    <!-- Decorative glows -->
+    <radialGradient id="glow1" cx="90%" cy="10%" r="50%">
+      <stop offset="0%" style="stop-color:rgba(249,115,22,0.25)"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </radialGradient>
+
+    <radialGradient id="glow2" cx="10%" cy="90%" r="40%">
+      <stop offset="0%" style="stop-color:rgba(59,130,246,0.2)"/>
+      <stop offset="100%" style="stop-color:transparent"/>
+    </radialGradient>
+
+    <!-- Filters -->
+    <filter id="tagShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="15" flood-color="rgba(249,115,22,0.4)"/>
+    </filter>
+
+    <filter id="codeShadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="15" stdDeviation="25" flood-color="rgba(0,0,0,0.5)"/>
+    </filter>
+
+    <filter id="highlightGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="0" stdDeviation="8" flood-color="rgba(251,191,36,0.6)"/>
+    </filter>
+  </defs>
+
+  <!-- ==================== BACKGROUND ==================== -->
+  <rect width="1080" height="1440" rx="40" fill="url(#bgGradient)"/>
+
+  <!-- Decorative glows -->
+  <ellipse cx="950" cy="150" rx="350" ry="350" fill="url(#glow1)"/>
+  <ellipse cx="100" cy="1300" rx="300" ry="300" fill="url(#glow2)"/>
+
+  <!-- Decorative icon -->
+  <text x="920" y="160" font-size="100" opacity="0.12">⚙️</text>
+
+  <!-- ==================== TAG ==================== -->
+  <g filter="url(#tagShadow)">
+    <rect x="60" y="70" width="280" height="60" rx="30" fill="url(#tagGradient)"/>
+    <text x="100" y="112"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="24" fill="white" opacity="0.8">{CARD_NUMBER}</text>
+    <text x="145" y="112"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="26" font-weight="700" fill="white">{TAG_TEXT}</text>
+  </g>
+
+  <!-- ==================== TITLE ==================== -->
+  <text x="60" y="220"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-size="58" font-weight="900" fill="white">{TITLE_PREFIX}</text>
+  <text x="210" y="220"
+        font-family="'SF Mono', Consolas, monospace"
+        font-size="58" font-weight="900" fill="url(#tagGradient)">{FILENAME}</text>
+
+  <!-- Subtitle -->
+  <text x="60" y="280"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-size="28" fill="rgba(255,255,255,0.6)">{SUBTITLE}</text>
+
+  <!-- ==================== CODE BLOCK ==================== -->
+  <g filter="url(#codeShadow)">
+    <!-- Code block background -->
+    <rect x="60" y="330" width="960" height="520" rx="20" fill="url(#codeBg)"/>
+
+    <!-- Window chrome bar -->
+    <rect x="60" y="330" width="960" height="50" rx="20" fill="#1a1a35"/>
+    <rect x="60" y="360" width="960" height="20" fill="#1a1a35"/>
+
+    <!-- Window buttons -->
+    <circle cx="100" cy="355" r="8" fill="#ff5f56"/>
+    <circle cx="130" cy="355" r="8" fill="#ffbd2e"/>
+    <circle cx="160" cy="355" r="8" fill="#27ca40"/>
+
+    <!-- Filename tab -->
+    <text x="500" y="362"
+          font-family="'SF Mono', Consolas, monospace"
+          font-size="18" fill="rgba(255,255,255,0.5)" text-anchor="middle">{FILENAME}</text>
+
+    <!-- CODE CONTENT - Customize this section -->
+    <!-- Line 1 -->
+    <text x="90" y="430" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#7c7cba">{</text>
+
+    <!-- Line 2 -->
+    <text x="120" y="475" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#9cdcfe">"name"</text>
+    <text x="240" y="475" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">:</text>
+    <text x="270" y="475" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#ce9178">"示例应用"</text>
+    <text x="450" y="475" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">,</text>
+
+    <!-- Line 3 -->
+    <text x="120" y="520" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#9cdcfe">"version"</text>
+    <text x="300" y="520" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">:</text>
+    <text x="330" y="520" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#ce9178">"1.0.0"</text>
+    <text x="460" y="520" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">,</text>
+
+    <!-- Line 4 -->
+    <text x="120" y="565" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#9cdcfe">"start_url"</text>
+    <text x="320" y="565" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">:</text>
+    <text x="350" y="565" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#ce9178">"/"</text>
+    <text x="390" y="565" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">,</text>
+
+    <!-- HIGHLIGHTED LINE - Key configuration -->
+    <rect x="80" y="585" width="920" height="50" rx="8" fill="rgba(251,191,36,0.15)"/>
+    <rect x="80" y="585" width="5" height="50" fill="#fbbf24"/>
+    <text x="120" y="620" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#9cdcfe">"display"</text>
+    <text x="280" y="620" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">:</text>
+    <text x="310" y="620" font-family="'SF Mono', Consolas, monospace" font-size="28" font-weight="bold" fill="#fbbf24" filter="url(#highlightGlow)">"standalone"</text>
+    <text x="540" y="620" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">,</text>
+    <!-- Highlight annotation -->
+    <text x="600" y="620" font-family="system-ui" font-size="22" fill="#fbbf24">← 关键配置!</text>
+
+    <!-- Line 6 -->
+    <text x="120" y="670" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#9cdcfe">"theme_color"</text>
+    <text x="360" y="670" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="white">:</text>
+    <text x="390" y="670" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#ce9178">"#667eea"</text>
+
+    <!-- Closing brace -->
+    <text x="90" y="720" font-family="'SF Mono', Consolas, monospace" font-size="26" fill="#7c7cba">}</text>
+  </g>
+
+  <!-- ==================== EXPLANATION BOX ==================== -->
+  <g>
+    <rect x="60" y="890" width="960" height="280" rx="24"
+          fill="rgba(59,130,246,0.1)"
+          stroke="rgba(59,130,246,0.3)" stroke-width="2"/>
+
+    <!-- Icon -->
+    <text x="100" y="960" font-size="50">💡</text>
+
+    <!-- Title -->
+    <text x="170" y="955"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="32" font-weight="700" fill="url(#blueGradient)">大白话解释</text>
+
+    <!-- Explanation content -->
+    <text x="100" y="1020"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="30" fill="white">{EXPLANATION_LINE1}</text>
+    <text x="100" y="1080"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="34" font-weight="600" fill="#fbbf24">{EXPLANATION_LINE2}</text>
+    <text x="100" y="1130"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="34" font-weight="600" fill="#fbbf24">{EXPLANATION_LINE3}</text>
+  </g>
+
+  <!-- ==================== TIP BOX ==================== -->
+  <g>
+    <rect x="60" y="1210" width="960" height="80" rx="16"
+          fill="rgba(255,255,255,0.05)"
+          stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    <text x="100" y="1260" font-size="32">📝</text>
+    <text x="150" y="1260"
+          font-family="system-ui, -apple-system, sans-serif"
+          font-size="26" fill="rgba(255,255,255,0.7)">{TIP_TEXT}</text>
+  </g>
+
+  <!-- ==================== FOOTER ==================== -->
+  <line x1="200" y1="1330" x2="880" y2="1330"
+        stroke="rgba(255,255,255,0.1)" stroke-width="2"/>
+
+  <text x="540" y="1400"
+        font-family="system-ui, -apple-system, sans-serif"
+        font-size="26" fill="rgba(255,255,255,0.4)" text-anchor="middle">
+    小红书 | @{YOUR_ID} · {SERIES_NAME}
+  </text>
+</svg>
