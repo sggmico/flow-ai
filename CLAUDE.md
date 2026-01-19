@@ -14,7 +14,7 @@ flow-ai/
 │   ├── code_*          # 代码相关技能（ci, cr, git-wt, master 等）
 │   ├── post_*          # 文章生成技能
 │   ├── fs_*            # 文件系统操作技能
-│   └── ui-ux-pro-max/  # UI/UX 设计智能技能
+│   └── ui_ux-pro-max/  # UI/UX 设计智能技能
 ├── rules/              # 开发规范与模板
 │   ├── global.md       # 全局开发规范
 │   ├── stacks/         # 技术栈规范（react, vue, nodejs）
@@ -64,7 +64,7 @@ python3 skills/<skill_name>/scripts/<script>.py [args]
 
 UI/UX 技能搜索：
 ```bash
-python3 skills/ui-ux-pro-max/scripts/search.py "<关键词>" --domain <domain>
+python3 skills/ui_ux-pro-max/scripts/search.py "<关键词>" --domain <domain>
 ```
 
 ## 核心工作流
