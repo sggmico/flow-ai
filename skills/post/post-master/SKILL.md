@@ -60,9 +60,14 @@ description: 技术文章生成、发布与管理的完整工作流。用于用�
 ```
 IF 生成模式:
     IF user provided target output directory:
-        use target directory for fs-write → skip draft detection
+        一级目录 = user provided target output directory
     ELSE:
-        fs-detect → 获取草稿目录
+        先询问用户：使用默认草稿目录规则，还是临时指定目录（作为一级目录）
+        IF 临时指定:
+            一级目录 = user provided target output directory
+        ELSE:
+            fs-detect → 获取草稿目录 (作为一级目录)
+    确认一级目录后，需询问用户是否再以当前使用的生成模型名创建子目录，作为最终草稿目录
     fs-next-id → 获取文章 ID
 
 IF --publish:
@@ -127,11 +132,14 @@ fs-write(
 
 ## 目录配置
 
-**草稿目录** (仅在用户未指定目标目录时按以下优先级使用):
-1. `docs/post_local/`
-2. `docs/post/`
-3. `post/` (当前目录)
-4. 不存在时创建 `docs/post_local/`
+**草稿目录**:
+1. 先确认一级目录：使用默认草稿目录规则或临时指定目录
+2. 默认草稿目录规则 (作为一级目录) 的优先级:
+   - `docs/post_local/`
+   - `docs/post/`
+   - `post/` (当前目录)
+   - 不存在时创建 `docs/post_local/`
+3. 确认一级目录后，询问是否以当前使用的生成模型名创建子目录，作为最终草稿目录
 
 **发布目录**:
 `/Users/sggmico/ws/cc/build-blog/{year}/`

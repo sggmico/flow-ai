@@ -73,8 +73,7 @@ description: 参考指定文章，并根据微信公众号的发布规范，生�
 - **确定文件名**: 以参考文章原文件名为主干，并追加平台引文简称后缀，例如 `[原文文件名]-wx版.md`。
 - **调用 `code-docs-creator`**:
     - 激活 `code-docs-creator` 技能。
-    - 指示 `code-docs-creator` 将整合后的 Markdown 内容，以上述文件名，写入到参考文章的同级目录下。
-    - **示例指令**: "请使用 `code-docs-creator`，将以下内容保存到 `/path/to/article/[原文文件名]-wx版.md` 文件中。"
+    - 指示 `code-docs-creator` 将整合后的 Markdown 内容，以上述文件名完成输出。
 - **最终确认**: 告诉用户文章已生成，并提供文件路径。
 
 ## 3. 详细规范参考
