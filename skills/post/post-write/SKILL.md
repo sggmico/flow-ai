@@ -1,6 +1,6 @@
 ---
 name: post-write
-description: 生成或优化技术文章正文并输出 JSON（title+content）。用于用户要求写技术文章、润色文章、综合多篇参考文或"mode=0/1/2"的写作任务时。
+description: Use when asked to generate or polish technical articles, synthesize multiple references, or write by mode=0/1/2 with structured JSON output.
 ---
 
 # Write Article Body
@@ -10,6 +10,24 @@ description: 生成或优化技术文章正文并输出 JSON（title+content）�
 ## 快速开始
 
 先确认输入类型与 `mode`，再按对应路径产出 JSON（title+content）。
+
+## 最新文档要求（强制）
+
+所有涉及库名、API、配置、版本、命令与语法的内容，必须先使用 context7 查询最新文档，再写入正文。
+
+最小操作步骤：
+1. 用 `resolve-library-id` 获取准确库 ID
+2. 用 `query-docs` 读取最新文档片段
+3. 将来源要点融合到正文（避免复制原文）
+
+禁止行为：
+- 依赖记忆或过往经验写入版本/配置
+- 没有 context7 证据就给出 API 结论
+
+红旗（出现即停止并补查）：
+- “这个库我很熟，应该没变”
+- “先写正文，最后再补文档”
+- “随便给个版本号即可”
 
 ## 输入
 
@@ -56,10 +74,13 @@ description: 生成或优化技术文章正文并输出 JSON（title+content）�
 ## 可视化规范（Mermaid 优先）
 
 - **优先使用 Mermaid**：用于流程/分层/决策树，替代 ASCII。
-- **默认尺寸**：在每个 Mermaid 块加入初始化配置：
-  - `fontSize: 12px`
-  - `nodeSpacing: 20`
-  - `rankSpacing: 20`
+- **初始化指令**：在每个 Mermaid 块开头加入 `init` 指令（语法来自 context7 最新文档）。
+  - 示例：
+    ```mermaid
+    %%{init: {"theme": "default", "flowchart": {"htmlLabels": true}} }%%
+    flowchart TD
+      A-->B
+    ```
 - **布局**：移动端优先 `flowchart TD`，控制在 6-8 个节点内。
 - **标题**：每个图前给一句说明，避免悬空图表。
 
