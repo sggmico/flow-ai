@@ -1,11 +1,11 @@
 ---
-name: blog-format
-description: 处理 build-blog 文章索引与提交流程，适用于在 /Users/sggmico/ws/cc/build-blog/ 下新增技术文章时需要维护 README 与生成正式提交的场景。
+name: publish-github-format
+description: 处理 build-blog 文章索引更新流程，适用于在 /Users/sggmico/ws/cc/build-blog/ 下新增技术文章时需要维护 README 的场景。
 ---
 
-# Blog Format
+# Publish GitHub Format
 
-以 `/Users/sggmico/ws/cc/build-blog/` 为默认目录，辅助新增文章的索引更新与规范化提交。
+以 `/Users/sggmico/ws/cc/build-blog/` 为默认目录，辅助新增文章的索引更新。
 
 ## 工作目录
 
@@ -29,14 +29,8 @@ description: 处理 build-blog 文章索引与提交流程，适用于在 /Users
 5. 写入前校验：确保该段 `ID` 递减、链接可访问并 URL 编码。
 6. 变更数量有限（最多当前年份 50 条）以节约 token；避免遍历全 repo。
 
-## 节点 3：Git 处理（不推送）
-
-- **前提**：`README` 或文章有改动。
-- 使用 `skills/code/code-ci` 执行标准 `git add`+`commit` 流程；提交消息由 `code-ci` 生成（如 `feat(blog): 新增XXX` 或 `chore(blog): 更新 README 索引`）。
-- 不在本 skill 中执行 `git push`。
-
 ## 反馈
 
-- 明确说明是否更新 README 与提交。
+- 明确说明是否更新 README。
 - 记录跳过理由（无新文章、重复编号、未提交文件）。
 - 若使用自定义目录，反映实际 `--workdir`。
