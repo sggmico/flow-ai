@@ -15,10 +15,6 @@ description: 技术文章生成、发布与管理的完整工作流。用于用�
 /code-master <文章路径>            # 优化单篇
 /code-master --refs <路径>         # 综合参考
 
-# 发布管理
-/code-master --publish [草稿]      # 发布草稿
-/code-master --update [草稿]       # 更新已发布
-/code-master --status              # 查看状态
 ```
 
 ---
@@ -34,11 +30,6 @@ description: 技术文章生成、发布与管理的完整工作流。用于用�
 | `--length`         | medium | short/medium/long              |
 | `--companion`      | false  | 生成配套文档                         |
 | `--no-preprocess`  | false  | 跳过预处理                          |
-| `--publish`        | -      | 发布草稿                           |
-| `--update`         | -      | 更新已发布                          |
-| `--status`         | -      | 查看状态                           |
-| `--list-drafts`    | -      | 列出草稿                           |
-| `--list-published` | -      | 列出已发布                          |
 
 ---
 
@@ -70,11 +61,6 @@ IF 生成模式:
     确认一级目录后，需询问用户是否再以当前使用的生成模型名创建子目录，作为最终草稿目录
     fs-next-id → 获取文章 ID
 
-IF --publish:
-    publish-github-go → 发布到正式目录
-
-IF --update:
-    fs-update → 更新已发布文章
 ```
 
 ### 3. 内容生成 (post_* skills)
@@ -141,9 +127,6 @@ fs-write(
    - 不存在时创建 `docs/post_local/`
 3. 确认一级目录后，询问是否以当前使用的生成模型名创建子目录，作为最终草稿目录
 
-**发布目录**:
-`/Users/sggmico/ws/cc/build-blog/{year}/`
-
 > ⚠️ 如果用户明确指定输出目录（例如 `/Users/.../post/...`），应直接写入该目录，避免在默认草稿目录中生成额外副本。
 
 ---
@@ -151,7 +134,7 @@ fs-write(
 ## Skills 依赖
 
 **内容类**: post-prep, post-analyze, post-write, post-extra
-**文件类**: fs-detect, fs-next-id, fs-write, publish-github-go, fs-update
+**文件类**: fs-detect, fs-next-id, fs-write
 
 ---
 
@@ -159,8 +142,6 @@ fs-write(
 
 - **草稿**: `{草稿目录}/{ID}_{title}.md`
 - **配套**: `{草稿目录}/{ID}_{title}_扩展信息.md` (--companion)
-- **发布**: `/Users/sggmico/ws/cc/build-blog/{year}/{ID}_{title}.md`
-
 > ⚠️ 若用户声明具体输出路径，则覆盖以上草稿目录定义，最终文件直接落在该目标目录而不再额外生成其它副本。
 
 ---

@@ -1,11 +1,12 @@
 ---
 name: publish-github-go
-description: 发布草稿到目标目录并更新映射，确保发布文件名优先来自文章内一级标题，缺失时才用原文件名。
+description: 发布与更新草稿到目标目录并维护映射，确保发布文件名优先来自文章内一级标题，缺失时才用原文件名。
 ---
 
 # Publish Local Blog
 
 将草稿移动到正式目录，并在映射文件维护历史记录。
+统一承接发布管理能力（发布/更新/状态/列表）。
 
 ## 快速开始
 
@@ -17,12 +18,33 @@ python scripts/publish_draft.py \
   --map-file <map.json>
 ```
 
+发布管理入口（由上层命令触发）:
+- 发布草稿: `--publish <draft>`
+- 更新已发布: `--update <draft>`
+- 查看状态: `--status`
+- 列出草稿/已发布: `--list-drafts` / `--list-published`
+
 ## 输入
 
 - `--draft-file`：草稿文件路径。
 - `--publish-dir`：发布目录。
 - `--publish-id`：发布用三位数 ID；留空则自动使用发布目录内的下一个序号。
 - `--map-file`：发布映射文件路径（如 `.publish-map.json`）。
+
+## 发布管理流程
+
+```
+IF --publish:
+    publish_draft.py → 发布到正式目录
+
+IF --update:
+    fs-update → 更新已发布文章
+```
+
+## 目录配置
+
+**发布目录**:
+`/Users/sggmico/ws/cc/build-blog/{year}/`
 
 ## 命名策略
 
