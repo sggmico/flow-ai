@@ -33,7 +33,7 @@ SYNC_DRY_RUN=1 SYNC_TARGETS="$HOME/foo:$HOME/bar" skills/skill/skill-multi-sync/
 
 - 同步前会将各命名空间目录下的 skill 子目录扁平化为平级结构再同步到目标目录
 - 扁平化时如出现同名冲突会终止并提示冲突清单
-- 默认同步到 `~/.claude/skills`、`~/.codex/skills`、`~/.gemini/skills`、`/Users/sggmico/ws/cc/learn-flow/.gemini/skills`、`/Users/sggmico/ws/cc/agent-flow-ws/.gemini/skills`
+- 默认同步到 `~/.claude/skills`、`~/.codex/skills`、`~/.gemini/skills`
 - 目标目录不存在时会自动创建
 - 会覆盖同名文件并删除多余文件
 - 不会删除或变动目标目录中的隐藏文件（例如以 `.` 开头的文件）

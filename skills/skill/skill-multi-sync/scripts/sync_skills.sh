@@ -8,10 +8,6 @@ TARGET_DIRS=(
   "$HOME/.claude/skills"
   "$HOME/.codex/skills"
   "$HOME/.gemini/skills"
-  "/Users/sggmico/ws/cc/learn-flow/.gemini/skills"
-  "/Users/sggmico/ws/cc/agent-flow-ws/.gemini/skills"
-  "/Users/sggmico/course/.gemini/skills"
-  "/Users/sggmico/ws/cc/flow-ai/.gemini/skills"
 )
 if [[ -n "${SYNC_TARGETS:-}" ]]; then
   IFS=',:' read -r -a TARGET_DIRS <<< "$SYNC_TARGETS"
