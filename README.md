@@ -1,57 +1,95 @@
 # flow-ai
 
-> **Engineering AI Agents into real workflows**  
-> 让 AI Agent 真正进入工程体系
+Engineering AI agents into real workflows.
 
-## 什么是 flow-ai？
+## 简介
 
-**flow-ai** 是一个面向工程实践的开源项目，致力于将 **AI Agent 能力** 与 **现代软件工程体系** 深度融合，把零散的 AI 使用方式，沉淀为：
+flow-ai 是一个工程化的 AI 工作流仓库, 以 skills 与可组合工作流为核心, 目标是让 Agent 能力可复用、可演进、可落地.
 
-> **可复用、可组合、可演进的 AI 工作流工程资产**
+## 核心能力
 
-在这里，Agent 不再只是 Demo，  
-而是成为**真实系统中的一等公民**。
+- **Skills**: 可复用的能力模块, 以 `SKILL.md` 为主定义
+- **Commands**: 统一的人机与 Agent 调用入口
+- **Agents**: 角色化与协作化的智能体模型
+- **Workflows**: 面向真实场景的自动化编排与执行
 
-## 项目愿景
+## 适用场景
 
-> 从 AI 工具，走向工程化智能。  
-> 从孤立 Agent，走向系统级工作流。
+- AI 驱动的软件开发流程
+- 多 Agent 协作与任务编排
+- 自动化研究与分析流水线
+- AI 运维与知识系统
+- Agent 化产品原型
 
-## 核心体系
+## 快速开始
 
-flow-ai 围绕四个基础层构建完整的 AI 工作流工程体系：
+### 一键安装(推荐)
 
-### Skills（能力层）  
-Agent 的可复用能力模块。  
-就像函数库一样，构建智能系统的**基础积木**。
+```bash
+curl -fsSL https://raw.githubusercontent.com/sggmico/flow-ai/main/scripts/install-skills.sh | bash
+```
 
-### Commands（接口层）  
-统一的人机 / Agent 交互入口：
+可选参数示例:
 
-- 人 → Agent  
-- Agent → Agent  
-- Agent → 系统  
+```bash
+# 安装到自定义目录
+CODEX_SKILLS_DIR="$HOME/.codex/skills" bash scripts/install-skills.sh --install
 
-Commands 定义了：  
-> **智能如何被调用**
+# 安装指定版本
+bash scripts/install-skills.sh --version v0.1.0
 
-### Agents（角色层）  
-可组合的智能体角色体系，具备：
+# 使用镜像或自定义下载源
+bash scripts/install-skills.sh --mirror https://example.com/releases
+```
 
-- 协作能力  
-- 委托能力  
-- 编排能力  
-- 演进能力  
+### 手动安装(可审阅)
 
-在 flow-ai 中，Agent 是**工程实体**，而不是聊天工具。
+```bash
+git clone https://github.com/sggmico/flow-ai.git
+cd flow-ai
+skills/skill/skill-multi-sync/scripts/sync_skills.sh
+```
 
-### Workflows（流程层）  
-面向真实场景的自动化与编排模式：
+### 更新与回滚
 
-- 多 Agent 协作流水线  
-- 工具增强推理  
-- 事件驱动执行  
-- 长任务调度与恢复  
+```bash
+# 更新(等同安装)
+bash scripts/install-skills.sh --update
+
+# 回滚到最近一次备份
+bash scripts/install-skills.sh --rollback
+
+# 卸载(会先备份)
+bash scripts/install-skills.sh --uninstall
+```
+
+### 快速使用
+
+```bash
+~/.codex/superpowers/.codex/superpowers-codex use-skill post-radar
+```
+
+## Release 产物
+
+```bash
+# 生成 release 资产(打包 skills + 生成 sha256)
+python3 scripts/gen-skills-manifest.py
+bash scripts/release-skills.sh
+```
+
+### GitHub Actions 发布
+
+```bash
+# 打 tag 触发自动发布
+git tag skills-vYYYY.MM.DD
+git push origin skills-vYYYY.MM.DD
+```
+
+## 使用说明
+
+- 默认安装到 `~/.codex/skills`, 可用 `CODEX_SKILLS_DIR` 覆盖.
+- 安装过程会对 skills 扁平化, 保持原始命名, 与本地同步产出一致.
+- 如遇同名冲突会中止并生成 `skills/sync_conflicts.txt`.
 
 ## 仓库结构
 
@@ -61,62 +99,22 @@ flow-ai/
 ├─ commands/      # 指令系统规范
 ├─ agents/        # Agent 角色与协作模型
 ├─ workflows/     # 自动化与编排模板
-├─ patterns/      # 工程模式（RAG / Tool-Use / Multi-Agent）
+├─ patterns/      # 工程模式
 ├─ infra/         # MCP / API / Runtime 集成
 ├─ examples/      # 实战场景
-├─ docs/          # 方法论 & 设计原则
+├─ docs/          # 方法论与设计原则
 └─ manifesto.md   # 项目宣言
-
 ```
-
-## flow-ai 有什么不同？
-
-- **工程优先**  
-    Agent 按软件组件标准设计，而不是 Demo。
-    
-- **工作流原生**  
-    AI 融入真实流程，而不是孤立工具。
-    
-- **系统思维**  
-    关注编排、可观测性与持续演进。
-    
-- **平台无关**  
-    不绑定任何单一模型或厂商。
-    
-
----
-
-## 适用场景
-
-- AI 驱动的软件开发流程
-    
-- 多 Agent 协作系统
-    
-- 自动化研究与分析流水线
-    
-- AI 运维与知识系统
-    
-- Agent 化产品原型
 
 ## 参与共建
 
-flow-ai 是一个持续演进的工程体系，欢迎各种形式的贡献：
+欢迎提交:
 
 - 新的 skills / agents / workflows
-    
 - 工程模式与最佳实践
-    
 - 工具链、基础设施与运行时集成
-    
 - 文档与真实案例沉淀
 
-## 开源协议
+## License
 
-MIT — 自由构建，负责任地锻造智能。
-
-## 加入 flow-ai
-
-如果你也认为：
-
-> **智能值得被工程化，而不是即兴发挥**，  
-> 那你已经是 flow-ai 的一员。
+MIT
