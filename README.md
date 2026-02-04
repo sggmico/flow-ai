@@ -81,8 +81,8 @@ bash scripts/release-skills.sh
 
 ```bash
 # 打 tag 触发自动发布
-git tag skills-vYYYY.MM.DD
-git push origin skills-vYYYY.MM.DD
+git tag v1.0.0
+git push origin v1.0.0
 ```
 
 ## 使用说明
