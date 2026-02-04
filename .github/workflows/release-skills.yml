@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     tags:
-      - "skills-v*"
+      - "v*"
 
 jobs:
   release:
@@ -21,10 +21,10 @@ jobs:
           python-version: "3.x"
 
       - name: Generate manifest
-        run: python3 scripts/gen-skills-manifest.py
+        run: RELEASE_VERSION="${GITHUB_REF_NAME#v}" python3 scripts/gen-skills-manifest.py
 
       - name: Build release assets
-        run: bash scripts/release-skills.sh
+        run: RELEASE_VERSION="${GITHUB_REF_NAME#v}" bash scripts/release-skills.sh
 
       - name: Read version
         id: version
@@ -42,7 +42,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           name: "Skills Release ${{ steps.version.outputs.version }}"
-          tag_name: "skills-v${{ steps.version.outputs.version }}"
+          tag_name: "v${{ steps.version.outputs.version }}"
           files: |
             dist/flow-ai-skills-*.tar.gz
             dist/flow-ai-skills-*.tar.gz.sha256

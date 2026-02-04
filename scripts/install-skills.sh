@@ -151,7 +151,7 @@ install_from_release() {
   tmp_dir="$(mktemp -d)"
   archive="$tmp_dir/skills.tar.gz"
 
-  if [[ -n "$MIRROR" && "$MIRROR" =~ \\.tar\\.gz$ ]]; then
+  if [[ -n "$MIRROR" && "$MIRROR" == *.tar.gz ]]; then
     asset_url="$MIRROR"
   else
     local release_endpoint

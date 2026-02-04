@@ -20,9 +20,11 @@ for namespace in sorted(os.listdir(SKILLS_DIR)):
             "source_path": f"skills/{namespace}/{name}",
         })
 
+version = os.environ.get("RELEASE_VERSION") or date.today().strftime("%Y.%m.%d")
+
 manifest = {
     "name": "flow-ai-skills",
-    "version": date.today().strftime("%Y.%m.%d"),
+    "version": version,
     "updated_at": date.today().isoformat(),
     "source": "repo",
     "skills": entries,
