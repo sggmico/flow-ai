@@ -149,10 +149,12 @@ install_from_release() {
 
   local tmp_dir archive release_json asset_url asset_name checksum_url
   tmp_dir="$(mktemp -d)"
-  archive="$tmp_dir/skills.tar.gz"
+  archive=""
 
   if [[ -n "$MIRROR" && "$MIRROR" == *.tar.gz ]]; then
+    asset_name="$(basename "$MIRROR")"
     asset_url="$MIRROR"
+    archive="$tmp_dir/$asset_name"
   else
     local release_endpoint
     if [[ -n "$VERSION" ]]; then
@@ -163,7 +165,7 @@ install_from_release() {
     release_json="$tmp_dir/release.json"
     download "$release_endpoint" "$release_json"
 
-    asset_name="$(python3 - <<'PY'
+    asset_name="$(python3 - "$release_json" <<'PY'
 import json, os, re
 import sys
 path = sys.argv[1]
@@ -178,7 +180,7 @@ for asset in assets:
         sys.exit(0)
 print('')
 PY
-"$release_json")"
+)"
 
     if [[ -z "$asset_name" ]]; then
       fail "no release asset matched pattern: $ASSET_PATTERN"
@@ -187,16 +189,16 @@ PY
     if [[ -n "$MIRROR" ]]; then
       asset_url="$MIRROR/$asset_name"
     else
-      asset_url="https://github.com/$REPO/releases/download/$(python3 - <<'PY'
+      asset_url="https://github.com/$REPO/releases/download/$(python3 - "$release_json" <<'PY'
 import json, sys
 with open(sys.argv[1], 'r', encoding='utf-8') as f:
     data = json.load(f)
 print(data.get('tag_name', ''))
 PY
-"$release_json")/$asset_name"
+ )/$asset_name"
     fi
 
-    checksum_url="$(python3 - <<'PY'
+    checksum_url="$(python3 - "$release_json" "$asset_name" <<'PY'
 import json, sys
 path, asset_name = sys.argv[1], sys.argv[2]
 with open(path, 'r', encoding='utf-8') as f:
@@ -207,7 +209,8 @@ for asset in data.get('assets', []):
         print(asset.get('browser_download_url', ''))
         break
 PY
-"$release_json" "$asset_name")"
+)"
+    archive="$tmp_dir/$asset_name"
   fi
 
   log "downloading: $asset_url"
