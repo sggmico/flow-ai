@@ -1,0 +1,49 @@
+name: Release Skills
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+      - "skills-v*"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Generate manifest
+        run: python3 scripts/gen-skills-manifest.py
+
+      - name: Build release assets
+        run: bash scripts/release-skills.sh
+
+      - name: Read version
+        id: version
+        run: |
+          version=$(python3 - <<'PY'
+          import json
+          with open('skills/manifest.json', 'r', encoding='utf-8') as f:
+              data = json.load(f)
+          print(data.get('version', ''))
+          PY
+          )
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "Skills Release ${{ steps.version.outputs.version }}"
+          tag_name: "skills-v${{ steps.version.outputs.version }}"
+          files: |
+            dist/flow-ai-skills-*.tar.gz
+            dist/flow-ai-skills-*.tar.gz.sha256
+          generate_release_notes: true

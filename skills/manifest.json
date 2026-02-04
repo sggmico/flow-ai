@@ -1,0 +1,152 @@
+{
+  "name": "flow-ai-skills",
+  "version": "2026.02.04",
+  "updated_at": "2026-02-04",
+  "source": "repo",
+  "skills": [
+    {
+      "flattened_name": "code-ci",
+      "source_path": "skills/code/code-ci"
+    },
+    {
+      "flattened_name": "code-cr",
+      "source_path": "skills/code/code-cr"
+    },
+    {
+      "flattened_name": "code-design-guard",
+      "source_path": "skills/code/code-design-guard"
+    },
+    {
+      "flattened_name": "code-docs-creator",
+      "source_path": "skills/code/code-docs-creator"
+    },
+    {
+      "flattened_name": "code-git-wt",
+      "source_path": "skills/code/code-git-wt"
+    },
+    {
+      "flattened_name": "code-linter-guard",
+      "source_path": "skills/code/code-linter-guard"
+    },
+    {
+      "flattened_name": "code-master",
+      "source_path": "skills/code/code-master"
+    },
+    {
+      "flattened_name": "code-quality-gate",
+      "source_path": "skills/code/code-quality-gate"
+    },
+    {
+      "flattened_name": "code-review-guide",
+      "source_path": "skills/code/code-review-guide"
+    },
+    {
+      "flattened_name": "code-sync-issue",
+      "source_path": "skills/code/code-sync-issue"
+    },
+    {
+      "flattened_name": "code-ts-review",
+      "source_path": "skills/code/code-ts-review"
+    },
+    {
+      "flattened_name": "fs-detect",
+      "source_path": "skills/fs/fs-detect"
+    },
+    {
+      "flattened_name": "fs-next-id",
+      "source_path": "skills/fs/fs-next-id"
+    },
+    {
+      "flattened_name": "fs-update",
+      "source_path": "skills/fs/fs-update"
+    },
+    {
+      "flattened_name": "fs-write",
+      "source_path": "skills/fs/fs-write"
+    },
+    {
+      "flattened_name": "img-canvas-design",
+      "source_path": "skills/img/img-canvas-design"
+    },
+    {
+      "flattened_name": "img-card-generator",
+      "source_path": "skills/img/img-card-generator"
+    },
+    {
+      "flattened_name": "notebooklm",
+      "source_path": "skills/local/notebooklm"
+    },
+    {
+      "flattened_name": "planning-with-files",
+      "source_path": "skills/local/planning-with-files"
+    },
+    {
+      "flattened_name": "post-analyze",
+      "source_path": "skills/post/post-analyze"
+    },
+    {
+      "flattened_name": "post-extra",
+      "source_path": "skills/post/post-extra"
+    },
+    {
+      "flattened_name": "post-master",
+      "source_path": "skills/post/post-master"
+    },
+    {
+      "flattened_name": "post-prep",
+      "source_path": "skills/post/post-prep"
+    },
+    {
+      "flattened_name": "post-radar",
+      "source_path": "skills/post/post-radar"
+    },
+    {
+      "flattened_name": "post-write",
+      "source_path": "skills/post/post-write"
+    },
+    {
+      "flattened_name": "publish-github",
+      "source_path": "skills/publish/publish-github"
+    },
+    {
+      "flattened_name": "publish-github-format",
+      "source_path": "skills/publish/publish-github-format"
+    },
+    {
+      "flattened_name": "publish-github-go",
+      "source_path": "skills/publish/publish-github-go"
+    },
+    {
+      "flattened_name": "publish-wx",
+      "source_path": "skills/publish/publish-wx"
+    },
+    {
+      "flattened_name": "publish-wx-assets",
+      "source_path": "skills/publish/publish-wx-assets"
+    },
+    {
+      "flattened_name": "publish-x",
+      "source_path": "skills/publish/publish-x"
+    },
+    {
+      "flattened_name": "publish-xhs",
+      "source_path": "skills/publish/publish-xhs"
+    },
+    {
+      "flattened_name": "skill-creator",
+      "source_path": "skills/skill/skill-creator"
+    },
+    {
+      "flattened_name": "skill-multi-sync",
+      "source_path": "skills/skill/skill-multi-sync"
+    },
+    {
+      "flattened_name": "ui-frontend-design",
+      "source_path": "skills/ui/ui-frontend-design"
+    },
+    {
+      "flattened_name": "ui-ux-pro",
+      "source_path": "skills/ui/ui-ux-pro"
+    }
+  ]
+}
